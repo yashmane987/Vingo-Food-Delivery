@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    fullName:{ typeof:String , require:true},
-    email:{ typeof:String , require:true , unique:true},
-    password:{ typeof:String },
-     mobileNo:{ typeof:String ,require:true},
-     role:{typeof:String, enum:["user","owener","deliveryBoy"], require:true}
+    fullName:{ type:String , required:true},
+    email:{ type:String , required:true , unique:true},
+    password:{ type:String },
+     mobileNo:{ type:String ,required:true},
+     role:{type:String, enum:["user","owener","deliveryBoy"], required:true}
 },{timestamps:true})
 
 const User =mongoose.model('User',userSchema)
