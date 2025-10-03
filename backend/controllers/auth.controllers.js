@@ -5,14 +5,14 @@ import genToken from "../utils/token.js";
  export const signUp = async (req, res) => {
   try {
     const { fullName, email, password, mobileNo, role } = req.body;
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json("User Already Exists");
     }
-    if (password.length > 6) {
+    if (password.length < 6) {
       return res.status(400).json("Password must be 6 Characters");
     }
-    if (mobileNo.lenth < 10) {
+    if (mobileNo.length < 10) {
       return res.status(400).json("mobileNo  must be 10 digits");
     }
     const hashPassword = await bcrypt.hash(password, 10);
@@ -73,5 +73,8 @@ export const signOut = async (req,res) => {
    return res.status(500).json(`SignOut error,${error}`)
  }
 }
+
+
+
 
 
